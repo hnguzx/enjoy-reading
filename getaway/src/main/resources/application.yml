@@ -1,0 +1,21 @@
+server:
+  port: 2021
+spring:
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://guzx:970712@${spring.cloud.client.ip-address}:8761/eureka
